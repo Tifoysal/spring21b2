@@ -23,7 +23,7 @@
         <tr>
             <th scope="row">1</th>
             <td>{{$data->name}}</td>
-            <td>{{$data->status }}</td>
+            <td>{{$data->status}}</td>
             <td>@mdo</td>
         </tr>
         @endforeach
