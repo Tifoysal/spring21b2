@@ -1,8 +1,8 @@
 @extends('backend.master')
 @section('content')
+<h1>Create New product</h1>
 
-
-    <form action="{{route('product.create')}}" method="post">
+    <form action="{{route('product.create')}}" method="post" enctype="multipart/form-data">
         @csrf
 
         <div class="form-group">
@@ -18,11 +18,16 @@
         <div class="form-group">
             <label for="">Select Category:</label>
             <select class="form-control" name="category_id" id="">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
+                @foreach($categories as $data)
+                <option value="{{$data->id}}">{{$data->name}}</option>
+                @endforeach
             </select>
         </div>
+
+        <div class="form-group">
+            <label for="">Upload Image</label>
+            <input name="product_image" type="file" class="form-control">
+       </div>
 
         <button class="btn btn-success" type="submit">Submit</button>
 

@@ -1,35 +1,37 @@
 @extends('backend.master')
 @section('content')
 
-    <a class="btn btn-secondary" href="{{route('product.create')}}">Create new product</a>
+    <a class="btn btn-secondary" href="{{route('product.create.form')}}">Create new product</a>
+
+    @if(session()->has('jahid-message'))
+        <div class="alert alert-success">
+            {{ session()->get('jahid-message') }}
+        </div>
+    @endif
+
     <table class="table">
         <thead>
         <tr>
             <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
+            <th scope="col">Product Image</th>
+            <th scope="col">Product Name</th>
+            <th scope="col">Product Price</th>
+            <th scope="col">Category</th>
         </tr>
         </thead>
         <tbody>
+
+        @foreach($products as $key=>$product)
         <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
+            <th scope="row">{{$key+1}}</th>
+            <td>
+                <img style="width: 100px;" src="{{url('/files/product/'.$product->image)}}" alt="">
+            </td>
+            <td>{{$product->name}}</td>
+            <td>{{$product->price}} .TK</td>
+            <td>{{$product->productCategory->name}}</td>
         </tr>
-        <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-        </tr>
-        <tr>
-            <th scope="row">3</th>
-            <td>Larry</td>
-            <td>the Bird</td>
-            <td>@twitter</td>
-        </tr>
+        @endforeach
         </tbody>
     </table>
 
